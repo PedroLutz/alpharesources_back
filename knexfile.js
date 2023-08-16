@@ -7,7 +7,7 @@ module.exports = {
     //coloca o banco de dados a ser utilizado
     client: 'sqlite3',
     connection: {
-      filename: './data/teste.db3'
+      filename: './data/recursos.db3'
     },
     useNullAsDefault: true,
     migrations:{
