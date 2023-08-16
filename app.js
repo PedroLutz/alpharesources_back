@@ -7,6 +7,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//teste
 //ARQUIVO DAS ROUTES
 const financas = require('./routes/financas');
 
