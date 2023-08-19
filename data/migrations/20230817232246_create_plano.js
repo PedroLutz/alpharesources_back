@@ -14,7 +14,6 @@ exports.up = function(knex) {
       table.string("plano_b",300).notNullable();
       table.char("tipo_b").notNullable();
       table.decimal("valor_b",5.2).notNullable();
-      
     });
   };
   exports.down = function(knex) {
