@@ -67,4 +67,15 @@ router.get("/filtro/:palavra", async(req,res)=> {
         }
 });
 
+//GERADOR DAS INFORMAÇÕES DO GRÁFICO
+router.get("/grafico",async(req,res) => {
+    try{
+        const plano = await dbKnex("plano")
+        .select('recurso', 'data_limite');
+        res.status(200).json(plano); //RETORNA CÓDIGO OK E OS DADOS
+    }catch(error){
+        res.status(400).json({msg:error.message}); //retorna status de erro e msg
+    }
+});
+
 module.exports = router;
