@@ -53,7 +53,7 @@ router.delete("/:id",async(req,res) => {
 
 //BUSCAR POR PALAVRA NA DESCRICAO
 router.get("/filtro/:palavra", async(req,res)=> {
-    const palavra = req.params.palavra;r
+    const palavra = req.params.palavra
     try{
             const financas = await dbKnex("financas")
             .where("descricao","like", `%${palavra}%`)
