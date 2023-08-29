@@ -32,7 +32,21 @@ router.put("/:id",async(req,res) => {
     const id = req.params.id; 
     const {preco} = req.body; 
     try{
-        await dbKnex("financas").update({preco}).where({id});
+        const registro = await dbKnex("financas").select("tipo").where({ id }).first();
+
+        if (!registro) {
+            throw new Error("Registro não encontrado.");
+        }
+
+        let updatedPreco = preco;
+
+        if (registro.tipo === "d") {
+            updatedPreco = -Math.abs(preco); // Torna o valor negativo
+        } else if (registro.tipo !== "e") {
+            throw new Error("Tipo inválido na tabela. O tipo deve ser 'e' ou 'd'.");
+        }
+
+        await dbKnex("financas").update({preco: updatedPreco}).where({id});
         res.status(200).json(); //CÓDIGO QUE INDICA FUNCIONAMENTO
     }catch(error){
         res.status(400).json({msg:error.message}); //retorna status de erro e msg
