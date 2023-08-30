@@ -31,19 +31,6 @@ router.post("/",async (req,res)=>{
     }
 });
 
-//ATUALIZAR VALOR DAS FINANÇAS
-router.put("/:id",async(req,res) => {
-    const id = req.params.id; 
-    const {valor} = req.body; 
-    try{
-        await dbKnex("plano").update({valor}).where({id});
-        res.status(200).json(); //CÓDIGO QUE INDICA FUNCIONAMENTO
-    }catch(error){
-        res.status(400).json({msg:error.message}); //retorna status de erro e msg
-    }
-});
-
-
 //DELETAR FINANÇA
 router.delete("/:id",async(req,res) => {
     const {id} = req.params; 
@@ -57,7 +44,7 @@ router.delete("/:id",async(req,res) => {
 
 //BUSCAR POR PALAVRA NA DESCRICAO
 router.get("/filtro/:palavra", async(req,res)=> {
-    const palavra = req.params.palavra;r
+    const palavra = req.params.palavra
     try{
             const financas = await dbKnex("plano")
             .where("recurso","like", `%${palavra}%`)
