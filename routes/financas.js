@@ -14,13 +14,13 @@ router.get("/",async(req,res) => {
 
 //INSERIR NOVAS FINANÇAS
 router.post("/",async (req,res)=>{
-    const {tipo, descricao, data, preco, area} = req.body;
-    if(!tipo || !descricao || !data || !preco || !area){
-        res.status(400).json({msg:"Enviar tipo, descrição, data, valor e área."});
+    const {tipo, descricao, data, preco, area, origem, destino} = req.body;
+    if(!tipo || !descricao || !data || !preco || !area || !origem || !destino){
+        res.status(400).json({msg:"Envie todas as informações requisitadas."});
         return;
     }
     try{
-        const novo = await dbKnex("financas").insert({tipo,descricao,data,preco,area});
+        const novo = await dbKnex("financas").insert({tipo,descricao,data,preco,area,origem,destino});
         res.status(201).json({id:novo[0]}); //CÓDIGO INDICA QUE A CRIAÇÃO FOI EFETUADA
     }catch(error){
         res.status(400).json({msg:error.message}); //retorna status de erro e msg

@@ -10,6 +10,8 @@ exports.up = function(knex) {
       table.date("data").notNullable();
       table.decimal("preco",5.2).notNullable();
       table.string("area",60).notNullable();
+      table.string("origem",60).notNullable();
+      table.string("destino",60).notNullable();
     });
   };
   exports.down = function(knex) {
